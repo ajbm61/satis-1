@@ -1,0 +1,15 @@
+{
+    "name": "pear/satis",
+    "description": "composer.pear.php.net",
+    "require": {
+        "composer/satis": "@alpha"
+    },
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Till Klampaeckel",
+            "email": "till@php.net"
+        }
+    ],
+    "minimum-stability": "dev"
+}
