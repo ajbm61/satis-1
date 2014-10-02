@@ -5,6 +5,8 @@ class Github
 {
     private $org;
 
+    private $request;
+
     private $token;
 
     /**
@@ -79,8 +81,41 @@ class Github
 
     private function getRequest()
     {
-        $request = new \HTTP_Request2;
-        $request->setMethod(\HTTP_Request2::METHOD_GET);
-        return $request;
+        if ($this->request instanceof \HTTP_Request2) {
+            return $this->request;
+        }
+
+        $this->request = new \HTTP_Request2;
+        $this->request->setMethod(\HTTP_Request2::METHOD_GET);
+        return $this->request;
+    }
+
+    /**
+     * @param \HTTP_Request2_Response $response
+     *
+     * @return array
+     * @throws \RuntimeException
+     */
+    private function parseResponse(\HTTP_Request2_Response $response)
+    {
+        $body = json_decode($response->getBody(), true);
+
+        if (JSON_ERROR_NONE !== json_last_error()) {
+
+            $msg = sprintf(
+                "Failed to decode response. Error: %s (%d), Response was: %s",
+                json_last_error_msg(),
+                json_last_error(),
+                $response->getBody()
+            );
+
+            throw new \RuntimeException($msg);
+        }
+
+        if (200 !== $response->getStatus()) {
+            throw new \RuntimeException($body['message']);
+        }
+
+        return $body;
     }
 }
