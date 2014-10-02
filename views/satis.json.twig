@@ -7,7 +7,7 @@
         {
             "no-api": true,
             "type": "vcs",
-            "url": "https://github.com/{{ repository }}.git"
+            "url": "{{ repository }}"
         }{% if loop.last == false %},{% endif %}
 {% endfor %}
     ],
