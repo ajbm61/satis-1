@@ -1,0 +1,16 @@
+{
+    "name": "PEAR Composer repository",
+    "homepage": "http://pear.imagineeasy.com",
+    "output-dir": "www",
+    "repositories": [
+{% for repository in repositories %}
+        {
+            "no-api": true,
+            "type": "vcs",
+            "url": "https://github.com/{{ repository }}.git"
+        }{% if loop.last == false %},{% endif %}
+{% endfor %}
+    ],
+    "require-all": true,
+    "minimum-stability": "alpha"
+}

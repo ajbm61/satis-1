@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+include dirname(__DIR__) . '/vendor/autoload.php';
+
+use PEAR\Satis\Command;
+use Symfony\Component\Console;
+
+$appRoot = dirname(__DIR__);
+
+$twig = new \Twig_Environment(new \Twig_Loader_Filesystem($appRoot . '/views'));
+
+$application = new Console\Application('pear-satis', '0.0.1');
+$application->add(new Command\BuildSatisJson($appRoot, $twig));
+exit($application->run());

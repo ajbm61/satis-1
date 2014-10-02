@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1dd6b69f38052b69fa297d52487a74a5",
+    "hash": "f0cccdb30ef1aad2b0c8f873aec82cb1",
     "packages": [
         {
             "name": "composer/composer",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "b33da336ecb7f1c9b15a57285e5a9f09cf5f3dd2"
+                "reference": "1e4229e22aefe50582734964d027fc1bfec16b1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/b33da336ecb7f1c9b15a57285e5a9f09cf5f3dd2",
-                "reference": "b33da336ecb7f1c9b15a57285e5a9f09cf5f3dd2",
+                "url": "https://api.github.com/repos/composer/composer/zipball/1e4229e22aefe50582734964d027fc1bfec16b1d",
+                "reference": "1e4229e22aefe50582734964d027fc1bfec16b1d",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2014-09-30 15:28:01"
+            "time": "2014-10-02 11:34:17"
         },
         {
             "name": "composer/satis",
@@ -195,6 +195,178 @@
                 "schema"
             ],
             "time": "2014-08-25 02:48:14"
+        },
+        {
+            "name": "pear/http_request2",
+            "version": "dev-trunk",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/HTTP_Request2.git",
+                "reference": "ed779344f6f9fad4ee69ad24827ec216b98d7ef9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pear/HTTP_Request2/zipball/ed779344f6f9fad4ee69ad24827ec216b98d7ef9",
+                "reference": "ed779344f6f9fad4ee69ad24827ec216b98d7ef9",
+                "shasum": ""
+            },
+            "require": {
+                "pear/net_url2": ">=2.0.0",
+                "pear/pear_exception": "*",
+                "php": ">=5.2.0"
+            },
+            "suggest": {
+                "ext-fileinfo": "Adds support for looking up mime-types using finfo.",
+                "ext-zlib": "Allows handling gzip compressed responses.",
+                "lib-curl": "Allows using cURL as a request backend.",
+                "lib-openssl": "Allows handling SSL requests when not using cURL."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTTP_Request2": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Borzov",
+                    "email": "avb@php.net"
+                }
+            ],
+            "description": "Provides an easy way to perform HTTP requests.",
+            "homepage": "http://pear.php.net/package/HTTP_Request2",
+            "keywords": [
+                "curl",
+                "http",
+                "pear",
+                "request"
+            ],
+            "support": {
+                "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=HTTP_Request2",
+                "source": "https://github.com/pear/HTTP_Request2"
+            },
+            "time": "2014-01-16 18:42:31"
+        },
+        {
+            "name": "pear/net_url2",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/Net_URL2.git",
+                "reference": "e4c4fb0d266a171feaed61d744b075769cfaa08b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pear/Net_URL2/zipball/e4c4fb0d266a171feaed61d744b075769cfaa08b",
+                "reference": "e4c4fb0d266a171feaed61d744b075769cfaa08b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.1.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Net_URL2": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Klingenberg",
+                    "email": "tkli@php.net"
+                },
+                {
+                    "name": "David Coallier",
+                    "email": "davidc@php.net"
+                },
+                {
+                    "name": "Christian Schmidt",
+                    "email": "chmidt@php.net"
+                }
+            ],
+            "description": "Class for parsing and handling URL. Provides parsing of URLs into their constituent parts (scheme, host, path etc.), URL generation, and resolving of relative URLs.",
+            "homepage": "https://github.com/pear/Net_URL2",
+            "keywords": [
+                "RFC 3986",
+                "net",
+                "networking",
+                "pear",
+                "uri",
+                "url"
+            ],
+            "support": {
+                "issues": "https://pear.php.net/bugs/search.php?cmd=display&package_name[]=Net_URL2",
+                "source": "https://github.com/pear/Net_URL2"
+            },
+            "time": "2014-09-07 17:29:55"
+        },
+        {
+            "name": "pear/pear_exception",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/PEAR_Exception.git",
+                "reference": "d5a3e9597040dcc56a4a2053a605e07214951202"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pear/PEAR_Exception/zipball/d5a3e9597040dcc56a4a2053a605e07214951202",
+                "reference": "d5a3e9597040dcc56a4a2053a605e07214951202",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=4.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "class",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PEAR": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "."
+            ],
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Helgi Thormar",
+                    "email": "dufuz@php.net",
+                    "role": "Lead"
+                },
+                {
+                    "name": "Greg Beaver",
+                    "email": "cellog@php.net",
+                    "role": "Helper"
+                }
+            ],
+            "description": "The PEAR Exception base class.",
+            "homepage": "https://github.com/pear/PEAR_Exception",
+            "keywords": [
+                "exception"
+            ],
+            "time": "2014-02-21 17:39:41"
         },
         {
             "name": "seld/jsonlint",
@@ -399,12 +571,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "fcdb9487cc2ffdb7e121b0ef25b99f8bd10d1efd"
+                "reference": "9fb15e343e881c9a89b97ee2262d7b8fbf512c6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/fcdb9487cc2ffdb7e121b0ef25b99f8bd10d1efd",
-                "reference": "fcdb9487cc2ffdb7e121b0ef25b99f8bd10d1efd",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/9fb15e343e881c9a89b97ee2262d7b8fbf512c6e",
+                "reference": "9fb15e343e881c9a89b97ee2262d7b8fbf512c6e",
                 "shasum": ""
             },
             "require": {
@@ -448,7 +620,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-01 05:31:33"
+            "time": "2014-10-01 17:51:59"
         }
     ],
     "packages-dev": [],
