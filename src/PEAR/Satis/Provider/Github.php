@@ -22,7 +22,10 @@ class Github
     }
 
     /**
+     * Crawl Github for repositories.
+     *
      * @return array
+     *
      * @throws \RuntimeException
      */
     public function provide()
