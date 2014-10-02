@@ -41,14 +41,14 @@ class Github
 
             $response = $request->setUrl($url)->send();
 
-            $body = json_decode($response->getBody(), true);
-
-            if (200 !== $response->getStatus()) {
-                throw new \RuntimeException($body['message']);
-            }
+            $body = $this->parseResponse($response);
 
             foreach ($body as $repository) {
-                $repositories[] = $repository['full_name'];
+
+                if (false !== $repository['fork']) {
+                    $repository = $this->findUpstream((int) $repository['id']);
+                }
+                $repositories[] = $repository['clone_url'];
             }
 
             $url = $this->extractNext($response->getHeader('Link'));
@@ -77,6 +77,22 @@ class Github
         }
 
         return false;
+    }
+
+    /**
+     * Find the upstream repository. We use 'source' to find the ultimate one.
+     *
+     * @param int $repositoryId
+     *
+     * @return array
+     */
+    private function findUpstream($repositoryId)
+    {
+        $url = sprintf("https://api.github.com/repositories/%d?access_token=%s", $repositoryId, $this->token);
+        $response = $this->getRequest()->setUrl($url)->send();
+
+        $body = $this->parseResponse($response);
+        return $body['source']; // ultimate source
     }
 
     private function getRequest()
