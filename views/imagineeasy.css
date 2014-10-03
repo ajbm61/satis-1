@@ -1,0 +1,31 @@
+body {
+    background-color:#f3f3ee;
+    color:#646464;
+}
+h1 {
+    color:#333333;
+}
+h3 {
+    color:#5a5a5a;
+}
+a {
+    color:#d15855;
+}
+#sponsored-by {
+    background-color: #d15855;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+#sponsored-by a {
+    color:#fff;
+}
+
+#sponsored-by p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
