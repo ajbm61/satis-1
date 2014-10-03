@@ -15,7 +15,8 @@
     ],
     "require": {
         "composer/satis": "@alpha",
-        "pear/http_request2": "*"
+        "pear/http_request2": "*",
+        "aws/aws-sdk-php": "2.6.*"
     },
     "license": "BSD-2-Clause",
     "authors": [

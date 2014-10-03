@@ -11,4 +11,5 @@ $twig = new \Twig_Environment(new \Twig_Loader_Filesystem($appRoot . '/views'));
 
 $application = new Console\Application('pear-satis', '0.0.1');
 $application->add(new Command\BuildSatisJson($appRoot, $twig));
+$application->add(new Command\UploadToBucket($appRoot));
 exit($application->run());
