@@ -7,7 +7,7 @@ use Symfony\Component\Console;
 
 $appRoot = dirname(__DIR__);
 
-$twig = new \Twig_Environment(new \Twig_Loader_Filesystem($appRoot . '/views'));
+$twig = new Twig_Environment(new Twig_Loader_Filesystem($appRoot . '/views'));
 
 $application = new Console\Application('pear-satis', '0.0.1');
 $application->add(new Command\BuildSatisJson($appRoot, $twig));
