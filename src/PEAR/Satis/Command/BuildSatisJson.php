@@ -42,7 +42,7 @@ class BuildSatisJson extends Console\Command\Command
         $token = $this->getToken($input);
 
         $github = new Provider\Github($input->getArgument(self::ARG_ORG), $token);
-        $repositories = $github->provide();
+        $repositories = $github->provide(include $this->appRoot . '/var/IgnoredRepositories.php');
 
         file_put_contents(
             $this->appRoot . '/satis.json',

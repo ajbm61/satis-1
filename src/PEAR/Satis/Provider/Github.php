@@ -24,11 +24,13 @@ class Github
     /**
      * Crawl Github for repositories.
      *
+     * @param array $filter
+     *
      * @return array
      *
      * @throws \RuntimeException
      */
-    public function provide()
+    public function provide(array $filter = [])
     {
         $url = sprintf(
             "https://api.github.com/orgs/%s/repos?type=public&access_token=%s",
@@ -47,6 +49,10 @@ class Github
             $body = $this->parseResponse($response);
 
             foreach ($body as $repository) {
+
+                if (in_array($repository['name'], $filter)) {
+                    continue;
+                }
 
                 if (false !== $repository['fork']) {
                     $repository = $this->findUpstream((int) $repository['id']);
