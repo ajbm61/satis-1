@@ -3,12 +3,11 @@
 ## Install
 
 ```sh
-$ ./composer.phar install
+$ make install
 ```
 
 ## Update
 
 ```
-$ ./bin/console pear-satis:update pear GITHUB-TOKEN
-$ ./vendor/bin/satis build --skip-errors
+$ make build
 ```
