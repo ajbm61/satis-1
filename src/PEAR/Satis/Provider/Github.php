@@ -3,21 +3,21 @@ namespace PEAR\Satis\Provider;
 
 class Github
 {
-    private $org;
+    private $orgs;
 
     private $request;
 
     private $token;
 
     /**
-     * @param string $org
+     * @param array  $orgs
      * @param string $token
      *
      * @return self
      */
-    public function __construct($org, $token)
+    public function __construct(array $orgs, $token)
     {
-        $this->org = $org;
+        $this->orgs = $orgs;
         $this->token = $token;
     }
 
@@ -32,9 +32,20 @@ class Github
      */
     public function provide(array $filter = [])
     {
+        $repositories = [];
+
+        foreach ($this->orgs as $org) {
+            $repositories = array_merge($repositories, $this->crawl($org, $filter));
+        }
+
+        return $repositories;
+    }
+
+    private function crawl($org, array $filter)
+    {
         $url = sprintf(
             "https://api.github.com/orgs/%s/repos?type=public&access_token=%s",
-            $this->org,
+            $org,
             $this->token
         );
 

@@ -32,8 +32,8 @@ class BuildSatisJson extends Console\Command\Command
         $this
             ->setName('pear-satis:update')
             ->setDescription('Update satis.json with git-repositories')
-            ->addArgument(self::ARG_ORG, Console\Input\InputArgument::REQUIRED, 'Which org do you want to spider?')
             ->addArgument(self::ARG_TOKEN, Console\Input\InputArgument::OPTIONAL, 'If set, token is used. Otherwise ENV.')
+            ->addArgument(self::ARG_ORG, Console\Input\InputArgument::IS_ARRAY, 'Which org(s) do you want to spider?')
         ;
     }
 
@@ -41,7 +41,11 @@ class BuildSatisJson extends Console\Command\Command
     {
         $token = $this->getToken($input);
 
-        $github = new Provider\Github($input->getArgument(self::ARG_ORG), $token);
+        $organisations = $input->getArgument(self::ARG_ORG);
+
+        $output->writeln("Crawling: " . implode(', ', $organisations));
+
+        $github = new Provider\Github($organisations, $token);
         $repositories = $github->provide(include $this->appRoot . '/var/IgnoredRepositories.php');
 
         file_put_contents(
