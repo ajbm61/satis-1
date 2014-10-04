@@ -86,4 +86,20 @@ return [
     'I18Nv2',
     'PHP_LexerGenerator',
     'XML_HTMLSax3',
+
+    // pear2
+    'Text_Textile.git',
+    'Templates_Savant',
+    'Exception',
+    'MultiErrors',
+    'Autoload',
+    'HTTP_Request',
+    'pear2.php.net',
+    'Templates_Savant_Turbo',
+    'Cache_Lite',
+    'pear2doc',
+    'DB_Pl2Method',
+    'Cache',
+    'Text_Markdown',
+    'Services_Ebay',
 ];
