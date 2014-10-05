@@ -1,8 +1,14 @@
 <?php
 namespace PEAR\Satis\Provider;
 
+use PEAR\Satis;
+use PEAR\Satis\Event;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
 class Github
 {
+    private $dispatcher;
+
     private $orgs;
 
     private $request;
@@ -12,13 +18,15 @@ class Github
     /**
      * @param array  $orgs
      * @param string $token
+     * @param EventDispatcher $dispatcher
      *
      * @return self
      */
-    public function __construct(array $orgs, $token)
+    public function __construct(array $orgs, $token, EventDispatcher $dispatcher)
     {
         $this->orgs = $orgs;
         $this->token = $token;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -36,6 +44,7 @@ class Github
 
         foreach ($this->orgs as $org) {
             $repositories = array_merge($repositories, $this->crawl($org, $filter));
+            $this->dispatcher->dispatch(Event::CRAWLED_ORG);
         }
 
         return $repositories;
@@ -62,10 +71,12 @@ class Github
             foreach ($body as $repository) {
 
                 if (in_array($repository['name'], $filter)) {
+                    $this->dispatcher->dispatch(Satis\Event::REPO_IGNORED, new Event\BuildSatisJson($repository));
                     continue;
                 }
 
                 if (false !== $repository['fork']) {
+                    $this->dispatcher->dispatch(Satis\Event::REPO_IS_FORK, new Event\BuildSatisJson($repository));
                     $repository = $this->findUpstream((int) $repository['id']);
                 }
                 $repositories[] = $repository['clone_url'];
