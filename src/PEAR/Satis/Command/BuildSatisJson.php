@@ -1,8 +1,10 @@
 <?php
 namespace PEAR\Satis\Command;
 
+use PEAR\Satis\Event;
 use PEAR\Satis\Provider;
 use Symfony\Component\Console;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class BuildSatisJson extends Console\Command\Command
 {
@@ -11,17 +13,21 @@ class BuildSatisJson extends Console\Command\Command
 
     private $appRoot;
 
+    private $dispatcher;
+
     private $twig;
 
     /**
      * @param string            $appRoot
      * @param \Twig_Environment $twig
+     * @param EventDispatcher   $dispatcher
      *
      * @return self
      */
-    public function __construct($appRoot, \Twig_Environment $twig)
+    public function __construct($appRoot, \Twig_Environment $twig, EventDispatcher $dispatcher)
     {
         $this->appRoot = $appRoot;
+        $this->dispatcher = $dispatcher;
         $this->twig = $twig;
 
         parent::__construct();
@@ -45,14 +51,21 @@ class BuildSatisJson extends Console\Command\Command
 
         $output->writeln("Crawling: " . implode(', ', $organisations));
 
-        $github = new Provider\Github($organisations, $token);
+        $this->dispatcher->dispatch(Event::CRAWLING);
+
+        $github = new Provider\Github($organisations, $token, $this->dispatcher);
         $repositories = $github->provide(include $this->appRoot . '/var/IgnoredRepositories.php');
 
-        file_put_contents(
-            $this->appRoot . '/satis.json',
+        $satisConfiguration = $this->appRoot . '/satis.json';
+        $status = file_put_contents(
+            $satisConfiguration,
             $this->twig->render('satis.json.twig', ['repositories' => $repositories])
         );
 
+        if (false === $status) {
+            $output->writeln("Failed to write: {$satisConfiguration}");
+            return;
+        }
         $output->writeln("Success!");
     }
 

@@ -3,20 +3,16 @@
     "description": "composer.pear.php.net",
     "repositories": [
         {
-            "no-api": true,
-            "type": "vcs",
-            "url": "https://github.com/pear/HTTP_Request2.git"
-        },
-        {
-            "no-api": true,
-            "type": "vcs",
-            "url": "https://github.com/pear/Net_URL2.git"
+            "type": "composer",
+            "url": "http://pear.imagineeasy.com"
         }
     ],
     "require": {
+        "aws/aws-sdk-php": "2.6.*",
         "composer/satis": "@alpha",
         "pear/http_request2": "*",
-        "aws/aws-sdk-php": "2.6.*"
+        "symfony/console": "2.5.*",
+        "symfony/event-dispatcher": "2.5.*"
     },
     "license": "BSD-2-Clause",
     "authors": [

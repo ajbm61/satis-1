@@ -2,14 +2,23 @@
 <?php
 include dirname(__DIR__) . '/vendor/autoload.php';
 
-use PEAR\Satis\Command;
+use PEAR\Satis;
 use Symfony\Component\Console;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 $appRoot = dirname(__DIR__);
 
 $twig = new Twig_Environment(new Twig_Loader_Filesystem($appRoot . '/views'));
 
+$listener = new Satis\Event;
+
+$dispatcher = new EventDispatcher();
+$dispatcher->addListener(Satis\Event::CRAWLING, [$listener, 'onCrawl']);
+$dispatcher->addListener(Satis\Event::REPO_IGNORED, [$listener, 'onRepoIgnored']);
+$dispatcher->addListener(Satis\Event::REPO_IS_FORK, [$listener, 'onRepoIsFork']);
+$dispatcher->addListener(Satis\Event::CRAWLED_ORG, [$listener, 'onCrawledOrg']);
+
 $application = new Console\Application('pear-satis', '0.0.1');
-$application->add(new Command\BuildSatisJson($appRoot, $twig));
-$application->add(new Command\UploadToBucket($appRoot));
+$application->add(new Satis\Command\BuildSatisJson($appRoot, $twig, $dispatcher));
+$application->add(new Satis\Command\UploadToBucket($appRoot));
 exit($application->run());
