@@ -9,7 +9,7 @@
     ],
     "require": {
         "aws/aws-sdk-php": "2.6.*",
-        "composer/satis": "@alpha",
+        "composer/satis": "1.0.0-alpha1",
         "pear/http_request2": "*",
         "symfony/console": "2.5.*",
         "symfony/event-dispatcher": "2.5.*"
